@@ -12,3 +12,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AuthRoutingModule { }
+app.module (اصلی)
+├── auth.module
+├── dashboard.module
+├── shared.module
+└── core.module

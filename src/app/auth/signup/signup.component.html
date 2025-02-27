@@ -1,1 +1,98 @@
-<p>signup works!</p>
+<section class="text-center text-lg-start">
+  <div class="container">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card">
+          <div class="card-body p-5 text-center">
+            <h2 class="fw-bold mb-4" style="color: #6a11cb;">Join Our Community</h2>
+            <p class="mb-4" style="color: #555;">Create an account to get started with our amazing services.</p>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control" formControlName="firstName" />
+                    <label class="form-label" for="form3Example1">First name</label>
+                    <div *ngIf="signupForm.get('firstName')!.invalid && signupForm.get('firstName')!.touched" class="text-danger">
+                      <div *ngIf="signupForm.get('firstName')!.errors?.['required']">
+                        First name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example2" class="form-control" formControlName="lastName" />
+                    <label class="form-label" for="form3Example2">Last name</label>
+                    <div *ngIf="signupForm.get('lastName')!.invalid && signupForm.get('lastName')!.touched" class="text-danger">
+                      <div *ngIf="signupForm.get('lastName')!.errors?.['required']">
+                        Last name is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example3" class="form-control" formControlName="email" />
+                <label class="form-label" for="form3Example3">Email address</label>
+                <div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched" class="text-danger">
+                  <div *ngIf="signupForm.get('email')!.errors?.['required']">
+                    Email is required.
+                  </div>
+                  <div *ngIf="signupForm.get('email')!.errors?.['email']">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control" formControlName="password" />
+                <label class="form-label" for="form3Example4">Password</label>
+                <div *ngIf="signupForm.get('password')!.invalid && signupForm.get('password')!.touched" class="text-danger">
+                  <div *ngIf="signupForm.get('password')!.errors?.['required']">
+                    Password is required.
+                  </div>
+                  <div *ngIf="signupForm.get('password')!.errors?.['minlength']">
+                    Password must be at least 6 characters long.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example5" class="form-control" formControlName="repeatPassword" />
+                <label class="form-label" for="form3Example5">Repeat Password</label>
+                <div *ngIf="signupForm.get('repeatPassword')!.invalid && signupForm.get('repeatPassword')!.touched" class="text-danger">
+                  <div *ngIf="signupForm.get('repeatPassword')!.errors?.['required']">
+                    Repeat Password is required.
+                  </div>
+                  <div *ngIf="signupForm.errors?.['mismatch']">
+                    Passwords do not match.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" formControlName="subscribe" id="form2Example33" />
+                <label class="form-check-label" for="form2Example33">
+                  Subscribe to our newsletter
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign Up Now
+              </button>
+
+              <div class="text-center social-buttons">
+                <p class="mb-3" style="color: #555;">sign in</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0 image-container">
+        <img src="../../../assets/images/seebandw.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
