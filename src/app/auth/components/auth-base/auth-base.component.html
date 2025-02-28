@@ -1,0 +1,43 @@
+<div class="h100vh">
+  <div class="d-flex h-100 w-100">
+    <div
+      class="col-lg-6 col-8 d-flex justify-content-center perml align-items-center full-width9"
+    >
+      <div class="p-3 login-box scaled-container">
+        <h3 class="mb-2 form-lable fw-bold fs-4 txt-primary">{{ title }}</h3>
+        <p class="form-text fs-6 mb-4 txt-secondary">
+          {{ subtitle }}
+        </p>
+
+        <ng-content></ng-content>
+        
+      </div>
+    </div>
+
+    <div
+      class="col d-none d-lg-block d-flex align-items-center justify-content-center position-relative h-100"
+    >
+      <div class="position-absolute w-100 h-100">
+        <div class="col d-flex align-items-center justify-content-center h-100">
+          <img
+            [src]="imgSrc"
+            class="img-fluid rounded-3 w-100 h-100 dynamic-img"
+            alt="Login Background"
+          />
+        </div>
+        <div
+          class="position-absolute rounded-3 top-0 start-0 w-100 h-100 opacity-75"
+          style="scale: 0.97; background-color: rgba(118, 108, 207, 0.856)"
+        ></div>
+        <div
+          class="position-absolute col-xxl-10 col-xl-8 col-6 top-50 start-50 translate-middle text-center mt-3"
+        >
+          <h4 class="text-white fw-bold">{{imgTitle}}</h4>
+          <p class="text-white">
+            {{imgSubtitle}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

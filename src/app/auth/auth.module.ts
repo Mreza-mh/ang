@@ -12,10 +12,11 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { env  } from 'src/environments/envirenmets';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthBaseComponent } from './components/auth-base/auth-base.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent, PasswordInputComponent],
+  declarations: [LoginComponent, SignupComponent, PasswordInputComponent, AuthBaseComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
