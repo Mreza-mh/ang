@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -12,8 +12,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AuthRoutingModule { }
-app.module (اصلی)
-├── auth.module
-├── dashboard.module
-├── shared.module
-└── core.module

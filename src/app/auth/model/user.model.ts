@@ -1,7 +1,11 @@
-export interface User {
-    email: string; 
-    userId: string;
-    password: string;
-    token: string;
-    username: string;
-}
+export type FirebaseUser = {
+  email: string | null;
+  uid: string;
+  username : string | null;
+};
+
+export type CustomUser = FirebaseUser & {
+  password?: string;
+  token?: string;
+  customField?: string;
+};
