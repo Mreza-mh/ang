@@ -5,8 +5,7 @@ import { AuthService } from '../../../../auth/service/auth.service';
 
 @Component({
   selector: 'app-firstpage',
-  template: `<div>ddddddddddd</div>
-    <button class="btn btn-primary" (click)="logout()">logout</button>`,
+  templateUrl: "./firstpage.component.html",
   styleUrls: ['./firstpage.component.scss'],
 })
 export class FirstpageComponent implements OnInit {

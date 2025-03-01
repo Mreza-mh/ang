@@ -11,6 +11,7 @@ import { env } from '../environments/envirenmets';
 import { CookieService } from 'ngx-cookie-service';
 import { appInitializer } from './app-init.service';
 import { AngularFireAuthModule, PERSISTENCE } from '@angular/fire/compat/auth';
+// import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [AppComponent],
