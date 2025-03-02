@@ -1,5 +1,134 @@
-
-
-<p>firstpage works!</p>
 <app-navbar></app-navbar>
-<button class="btn btn-primary" (click)="logout()">logout</button>
+
+<div class="container-fluid p-4">
+  <div class="card shadow-lg">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <h2 class="mb-0 text-dark font-weight-bold">User <b>Management</b></h2>
+      <button class="btn btn-primary btn-sm" (click)="toggleAddUser()">
+        <i class="fas fa-plus"></i> Add User
+      </button>
+    </div>
+    <div class="card-body table-container ">
+      <!-- Add User Form -->
+      <div class="mb-4 p-4 bg-white rounded" *ngIf="isAdding">
+        <h4 class="text-center mb-4 text-dark font-weight-bold">New User</h4>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" [(ngModel)]="newUser.username" placeholder="Username" />
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" [(ngModel)]="newUser.email" placeholder="Email" />
+          </div>
+          <div class="col-md-4">
+            <input type="password" class="form-control form-control-sm" [(ngModel)]="newUser.password" placeholder="Password" />
+          </div>
+          <div class="col-12 text-center">
+            <button class="btn btn-success btn-sm me-2" (click)="addUser()">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button class="btn btn-secondary btn-sm" (click)="toggleAddUser()">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- User List for Mobile -->
+      <div class="d-block d-md-none">
+        <div *ngFor="let user of users" class="card mb-3">
+          <div class="card-body">
+            <div *ngIf="!user.isEditing">
+              <h5 class="card-title text-dark font-weight-bold">{{ user.username }}</h5>
+              <p class="card-text text-muted mb-1"><strong>Email:</strong> {{ user.email }}</p>
+              <p class="card-text text-muted mb-1"><strong>Password:</strong> {{ user.password }}</p>
+              <div class="d-flex gap-2 mt-3">
+                <button class="btn btn-sm btn-outline-info" (click)="editUser(user)">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user.id)">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </div>
+            </div>
+            <div *ngIf="user.isEditing">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input class="form-control form-control-sm" [(ngModel)]="user.username" placeholder="Username" />
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control form-control-sm" [(ngModel)]="user.email" placeholder="Email" />
+                </div>
+                <div class="col-md-6">
+                  <input type="password" class="form-control form-control-sm" [(ngModel)]="user.password" placeholder="Password" />
+                </div>
+                <div class="col-12 text-center mt-3">
+                  <button class="btn btn-success btn-sm me-2" (click)="saveEdit(user)">
+                    <i class="fas fa-save"></i> Save
+                  </button>
+                  <button class="btn btn-secondary btn-sm" (click)="cancelEdit(user)">
+                    <i class="fas fa-times"></i> Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Table for Desktop -->
+      <div class="d-none d-md-block">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="bg-light">
+              <tr>
+                <th class="text-dark font-weight-bold">Username</th>
+                <th class="text-dark font-weight-bold">Email</th>
+                <th class="text-dark font-weight-bold">Password</th>
+                <th class="text-dark font-weight-bold">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <div *ngIf="!user.isEditing">{{ user.username }}</div>
+                  <input *ngIf="user.isEditing" class="form-control form-control-sm" [(ngModel)]="user.username" />
+                </td>
+                <td>
+                  <div *ngIf="!user.isEditing">{{ user.email }}</div>
+                  <input *ngIf="user.isEditing" class="form-control form-control-sm" [(ngModel)]="user.email" />
+                </td>
+                <td>
+                  <div *ngIf="!user.isEditing">{{ user.password }}</div>
+                  <input *ngIf="user.isEditing" type="password" class="form-control form-control-sm" [(ngModel)]="user.password" />
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button *ngIf="!user.isEditing" class="btn btn-sm btn-outline-info" (click)="editUser(user)">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button *ngIf="user.isEditing" class="btn btn-sm btn-success" (click)="saveEdit(user)">
+                      <i class="fas fa-save"></i> Save
+                    </button>
+                    <button *ngIf="user.isEditing" class="btn btn-sm btn-secondary" (click)="cancelEdit(user)">
+                      <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user.id)">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Button -->
+<div class="text-center mt-4">
+  <button class="btn btn-danger btn-sm" (click)="logoutUser()">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+</div>

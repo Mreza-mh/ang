@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './auth/guard/auth.guard';
+import { RoleGuard } from './guards/role.guard';
+import { UserhomepageComponent } from './pages/home/userhomepage/userhomepage.component';
 
 const routes: Routes = [
   {
@@ -10,8 +12,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [authGuard],
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+    canActivate: [RoleGuard],
+    data: { role: 'admin' },
+  },
+  {
+    path: 'home',
+    component: UserhomepageComponent,
+    canActivate: [RoleGuard], // استفاده از RoleGuard
+    data: { role: 'user' }, // نقش مورد نیاز
   },
 
   { path: '**', redirectTo: '/' },
@@ -22,3 +33,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+

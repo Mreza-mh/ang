@@ -30,14 +30,23 @@ export class LoginComponent implements OnInit {
       };
 
       try {
-        await this.authservice.login(authData);
-        // Optional: Redirect or show success message
+        this.authservice.login(authData).subscribe({
+          next: (response) => {
+            console.log('Login successful:', response);
+            // انجام اقدامات بعدی پس از لاگین موفق (مثلاً هدایت به صفحه داشبورد)
+          },
+          error: (err) => {
+            console.error('Login failed:', err);
+            // نمایش پیام خطا به کاربر
+          },
+        });
       } catch (error) {
-        console.error('Login failed:', error);
-        // Handle error (show error message to user)
+        console.error('An unexpected error occurred:', error);
+        // نمایش پیام خطا به کاربر
       }
     } else {
       console.log('Form is not valid');
+      // نمایش پیام خطا به کاربر (مثلاً "لطفاً فیلدهای فرم را پر کنید")
     }
   }
 }

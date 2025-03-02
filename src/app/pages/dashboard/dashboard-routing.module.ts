@@ -8,17 +8,8 @@ const routes: Routes = [
   {
     path: '', // مسیر اصلی داشبورد
     component: FirstpageComponent, 
-    // canActivate: [authGuard], 
+    // canActivate: [], 
     children: [
-    //   {
-    //     path: '',
-    //     redirectTo: 'overview',
-    //     pathMatch: 'full',
-    //   },
-    //   {
-    //     path: 'overview',
-    //     component: OverviewComponent,
-    //   },
     ],
   },
 ];

@@ -1,0 +1,114 @@
+/* Custom CSS */
+body {
+  background: #f8f9fa;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 16px;
+}
+
+.card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.add-employee-form {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+.btn {
+  transition: all 0.3s ease;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .card-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .add-employee-form {
+    padding: 15px;
+  }
+
+  .add-employee-form h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .add-employee-form {
+    padding: 10px;
+  }
+
+  .add-employee-form h4 {
+    font-size: 1rem;
+  }
+}
+
+
+/* اضافه کردن اسکرول به جدول */
+.table-container {
+  max-height: 400px; /* ارتفاع دلخواه */
+  overflow-y: auto;
+}

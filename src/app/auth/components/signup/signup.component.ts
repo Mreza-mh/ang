@@ -45,16 +45,18 @@ export class SignupComponent {
           this.signupForm.value.firstName +
           ' ' +
           this.signupForm.value.lastName,
-        email: this.signupForm.value.email,
         password: this.signupForm.value.password,
+        email: this.signupForm.value.email,
+        role: 'user', 
       };
 
       try {
-        await this.authService.registerUser(userData);
-        // Optional: Show success message
+        this.authService.registerUser(userData).subscribe({
+          next: () => console.log('Registration successful'),
+          error: (err) => console.error('Registration failed:', err),
+        });
       } catch (error) {
         console.error('Registration failed:', error);
-        // Handle error (show error message to user)
       }
     } else {
       console.log('Form is not valid');

@@ -9,7 +9,6 @@ import { PasswordInputComponent } from '../shared/components/password-input/pass
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { AngularFireModule } from '@angular/fire/compat'
-import { env  } from 'src/environments/envirenmets';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthBaseComponent } from './components/auth-base/auth-base.component';
@@ -23,8 +22,6 @@ import { AuthBaseComponent } from './components/auth-base/auth-base.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(env.firebaseConfig),
-    AngularFireAuthModule,
   ],
   providers: [AuthService, CookieService],
 })

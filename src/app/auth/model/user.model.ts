@@ -1,10 +1,10 @@
-export type FirebaseUser = {
+export type userdata = {
   email: string | null;
-  uid: string;
-  username : string | null;
+  username: string | null;
+  role: string | null;
 };
 
-export type CustomUser = FirebaseUser & {
+export type CustomUser = userdata & {
   password?: string;
   token?: string;
   customField?: string;

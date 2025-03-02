@@ -1,15 +1,5 @@
-import { AuthService } from './auth/service/auth.service';
+// import { AuthService } from './auth/service/auth.service';
 
-export function appInitializer(authService: AuthService) {
-  return () =>
-    new Promise<void>((resolve) => {
-      authService.isAuthenticated().then((isAuth) => {
-        if (isAuth) {
-          console.log('User is authenticated');
-        } else {
-          console.log('User is not authenticated');
-        }
-        resolve();
-      });
-    });
-}
+// export function appInitializer(authService: AuthService) {
+//   return (true)
+// }
