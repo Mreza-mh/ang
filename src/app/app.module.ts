@@ -10,6 +10,7 @@ import { UserhomepageComponent } from './pages/home/userhomepage/userhomepage.co
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { appInitializer } from './app-init.service';
 import { SharedModule } from './shared/shared.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, UserhomepageComponent],
@@ -19,9 +20,10 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
+    [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
     AuthService,
     CookieService,
     {
