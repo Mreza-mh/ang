@@ -4,8 +4,3 @@ export type userdata = {
   role: string | null;
 };
 
-export type CustomUser = userdata & {
-  password?: string;
-  token?: string;
-  customField?: string;
-};

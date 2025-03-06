@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface User {
-  id: string; // در MockAPI، id معمولاً از نوع string است
+  id: string; 
   username: string;
   email: string;
   password: string;

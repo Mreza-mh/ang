@@ -1,38 +1,48 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
-  CanActivate,
+  CanActivateFn,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../auth/service/auth.service';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RoleGuard implements CanActivate {
+export class RoleGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
+  canActivate: CanActivateFn = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> {
-    const requiredRole = route.data['role']; // نقش مورد نیاز برای دسترسی به مسیر
+  ): Observable<boolean | UrlTree> => {
+    const requiredRole = route.data['role']; 
 
     return this.authService.isAuthenticated().pipe(
       map((isAuthenticated) => {
         const user = this.authService.getCurrentUser();
 
-        if (isAuthenticated && user?.role === requiredRole) {
-          return true; // اجازه دسترسی
+        if (isAuthenticated && user && user?.role === requiredRole) {
+          return true; 
         } else {
-          this.router.navigate(['/auth/login']); // هدایت به صفحه لاگین
-          return false; // عدم اجازه دسترسی
+          return this.router.createUrlTree(['/auth/login']);
         }
+      }),
+      catchError(() => {
+        return of(this.router.createUrlTree(['/auth/login'])); 
       })
     );
-  }
+  };
 }
+
+export const roleGuardFn: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const guard = inject(RoleGuard);
+  return guard.canActivate(route, state);
+};

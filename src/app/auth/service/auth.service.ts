@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
-import { AuthData } from '../model/auth.model';
 import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { tap, catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+
+import { jwtDecode } from 'jwt-decode';
+
+import { AuthData } from '../model/auth.model';
 import { userdata } from '../model/user.model';
-import { jwtDecode } from 'jwt-decode'; // درست
-import { DynamicRoutesService } from 'src/app/service/dynamic-routes.service';
+
 
 
 @Injectable({
@@ -14,20 +17,19 @@ import { DynamicRoutesService } from 'src/app/service/dynamic-routes.service';
 })
 export class AuthService {
   private user: userdata | null = null;
-  authCheck = new BehaviorSubject<boolean>(false); // برای بررسی وضعیت احراز هویت کاربر
-  private secretKey = 'my-very-secure-and-long-secret-key-1234567890'; // کلید مخفی ساختگی
+  authCheck = new BehaviorSubject<boolean>(false); 
+  private secretKey = 'my-very-secure-and-long-secret-key-1234567890'; 
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private dynamicRoutesService: DynamicRoutesService
   ) {}
 
-  private apiUrl = 'https://67c2e6bc1851890165ad9557.mockapi.io/api/user'; // Updated endpoint
+  private apiUrl = 'https://67c2e6bc1851890165ad9557.mockapi.io/api/user'; 
 
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
-    return throwError('Something went wrong. Please try again later.'); // Return a user-friendly error message
+    return throwError('Something went wrong. Please try again later.'); 
   }
 
   // ثبت‌نام کاربر
@@ -37,7 +39,7 @@ export class AuthService {
     return this.http.post(this.apiUrl, authData).pipe(
       tap((response: any) => {
         console.log('User registered successfully:', response);
-        this.router.navigate(['/auth/login']); // Redirect to login page
+        this.router.navigate(['/auth/login']); 
       }),
       catchError(this.handleError)
     );
@@ -50,9 +52,9 @@ export class AuthService {
           (u) => u.email === authData.email && u.password === authData.password
         );
         if (user) {
-          return user; // کاربر پیدا شد
+          return user; 
         } else {
-          throw new Error('Invalid credentials'); // کاربر پیدا نشد
+          throw new Error('Invalid credentials'); 
         }
       }),
       tap((user) => {
@@ -65,11 +67,10 @@ export class AuthService {
         localStorage.setItem('token', token);
         this.authCheck.next(true);
 
-        // هدایت کاربر به مسیر مناسب بر اساس نقش
         if (user.role === 'admin') {
           this.router.navigate(['dashboard']);
         } else {
-          console
+          console;
           this.router.navigate(['home']);
         }
       }),
@@ -79,16 +80,18 @@ export class AuthService {
 
   logout(): Observable<any> {
     return of(null).pipe(
+      //یک Observable ایجاد می‌کند که فقط یک مقدار (null) منتشر می‌کند.
       tap(() => {
-        this.user = null; // پاک کردن اطلاعات کاربر
-        this.authCheck.next(false); // اعلام خروج کاربر
-        localStorage.removeItem('token'); // حذف توکن از localStorage
+        this.user = null; 
+        this.authCheck.next(false); 
+        localStorage.removeItem('token'); 
         this.router.navigate(['/auth/login']);
       }),
       catchError((error) => {
-        console.error('Logout failed:', error);
-        // نمایش پیام خطا به کاربر (اختیاری)
-        return throwError('Logout failed. Please try again.'); // ارسال خطا به caller
+        console.error('An error occurred:', error);
+        return throwError(
+          () => new Error('Something went wrong. Please try again.')
+        );
       })
     );
   }
@@ -104,20 +107,28 @@ export class AuthService {
     if (token) {
       try {
         const decoded: any = jwtDecode(token);
+        const currentTime = Math.floor(Date.now() / 1000); 
+        if (decoded.exp < currentTime) {
+          console.log('Token has expired');
+          localStorage.removeItem('token'); 
+          this.authCheck.next(false); 
+          return of(false);
+        }
+
         this.user = {
           email: decoded.email,
           username: decoded.username,
           role: decoded.role,
         };
-        this.authCheck.next(true); // اعلام احراز هویت موفق
-        return of(true); // برگرداندن Observable از true
+        this.authCheck.next(true); 
+        return of(true); 
       } catch (error) {
         console.error('Token decoding error:', error);
-        this.authCheck.next(false); // اعلام عدم احراز هویت
-        return of(false); // برگرداندن Observable از false
+        this.authCheck.next(false); 
+        return of(false); 
       }
     } else {
-      return of(false); // اگر توکن وجود نداشت، کاربر احراز هویت نشده است
+      return of(false); 
     }
   }
 
@@ -126,7 +137,7 @@ export class AuthService {
     const payload = {
       email: user.email,
       username: user.username,
-      role: user.role, // اضافه کردن نقش به توکن
+      role: user.role, 
       exp: Math.floor(Date.now() / 1000) + 3600,
     };
     const encodedHeader = btoa(JSON.stringify(header));

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './auth/guard/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { UserhomepageComponent } from './pages/home/userhomepage/userhomepage.component';
 
@@ -21,8 +20,8 @@ const routes: Routes = [
   {
     path: 'home',
     component: UserhomepageComponent,
-    canActivate: [RoleGuard], // استفاده از RoleGuard
-    data: { role: 'user' }, // نقش مورد نیاز
+    canActivate: [RoleGuard],
+    data: { role: 'user' }, 
   },
 
   { path: '**', redirectTo: '/' },

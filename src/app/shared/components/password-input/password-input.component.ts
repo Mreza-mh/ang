@@ -10,7 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         class="form-control form-control-lg w-100"
         [placeholder]="placeholder"
         [formControlName]="formControlName"
-        (input)="onInputChange($event)" 
+        (input)="onInputChange($event)"
       />
       <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
         <img [src]="eyeIconSrc" alt="eye icon" style="width: 20px;" />
@@ -49,9 +49,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
   providers: [
     {
+      // این بخش به Angular می‌گوید که این کامپوننت یک ControlValueAccessor است
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => PasswordInputComponent),
-      multi: true,
+      useExisting: forwardRef(() => PasswordInputComponent), // ارجاع به کلاس کامپوننت
+      multi: true, // اجازه می‌دهد چندین provider برای NG_VALUE_ACCESSOR وجود داشته باشد
     },
   ],
 })
@@ -61,7 +62,6 @@ export class PasswordInputComponent implements ControlValueAccessor {
 
   passwordFieldType: string = 'password';
   eyeIconSrc: string = 'assets/icons/eye-slash.svg';
-
 
   onChange: any = () => {};
   onTouched: any = () => {};

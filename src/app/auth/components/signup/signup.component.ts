@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { AuthData } from '../../model/auth.model';
 import { AuthService } from '../../service/auth.service';
 @Component({
@@ -13,7 +12,6 @@ export class SignupComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private authService: AuthService
   ) {}
 
