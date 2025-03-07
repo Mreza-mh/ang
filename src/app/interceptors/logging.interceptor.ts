@@ -14,7 +14,7 @@ export class LoggingInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler //که مسئول ارسال درخواست به سرور و دریافت پاسخ است
+    next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     console.log('Outgoing Request:', request.url, request.method, request.body);
 

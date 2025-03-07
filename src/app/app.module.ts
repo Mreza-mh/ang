@@ -12,8 +12,9 @@ import { appInitializer } from './app-init.service';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, UserhomepageComponent],
+  declarations: [AppComponent, UserhomepageComponent], //کامپوننتها، دایرکتیوها و پایپهای متعلق به ماژول.
   imports: [
+    //ماژولهای خارجی مورد نیاز
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -22,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
   ],
   providers: [
+    //سرویسهایی که در ماژول قابل استفاده هستند
     AuthService,
     CookieService,
     {
@@ -36,6 +38,6 @@ import { SharedModule } from './shared/shared.module';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent], // کامپوننت ریشه (فقط در ماژول اصلی) 
 })
 export class AppModule {}

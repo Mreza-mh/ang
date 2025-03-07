@@ -17,6 +17,7 @@ export class FirstpageComponent implements OnInit {
     password: '',
     role: 'user',
   };
+  
   isAdding: boolean = false;
   currentEditId: string | null = null;
 
@@ -39,7 +40,10 @@ export class FirstpageComponent implements OnInit {
   }
 
   editUser(user: User & { isEditing?: boolean }) {
-    if (this.currentEditId !== null) return;
+    if (this.currentEditId !== null) {
+      console.log( this.currentEditId + " is ready to edit ");
+      return;
+    }
     this.currentEditId = user.id || null;
     user.isEditing = true;
   }
@@ -71,19 +75,6 @@ export class FirstpageComponent implements OnInit {
       next: () => this.fetchUsers(),
       error: (err) => console.error('Error deleting user:', err),
     });
-  }
-
-  toggleAddUser() {
-    this.isAdding = !this.isAdding;
-    if (this.isAdding) {
-      this.newUser = {
-        id: '',
-        username: '',
-        email: '',
-        password: '',
-        role: 'user',
-      };
-    }
   }
 
   addUser() {

@@ -1,69 +1,128 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid p-4">
-  <div class="card shadow-lg">
-    <div class="card-header bg-white d-flex justify-content-between align-items-center">
-      <h2 class="mb-0 text-dark font-weight-bold">User <b>Management</b></h2>
-      <button class="btn btn-primary btn-sm" (click)="toggleAddUser()">
-        <i class="fas fa-plus"></i> Add User
-      </button>
-    </div>
-    <div class="card-body table-container ">
-      <div class="mb-4 p-4 bg-white rounded" *ngIf="isAdding">
-        <h4 class="text-center mb-4 text-dark font-weight-bold">New User</h4>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <input class="form-control form-control-sm" [(ngModel)]="newUser.username" placeholder="Username" />
-          </div>
-          <div class="col-md-4">
-            <input class="form-control form-control-sm" [(ngModel)]="newUser.email" placeholder="Email" />
-          </div>
-          <div class="col-md-4">
-            <input type="password" class="form-control form-control-sm" [(ngModel)]="newUser.password" placeholder="Password" />
-          </div>
-          <div class="col-12 text-center">
-            <button class="btn btn-success btn-sm me-2" (click)="addUser()">
-              <i class="fas fa-save"></i> Save
-            </button>
-            <button class="btn btn-secondary btn-sm" (click)="toggleAddUser()">
-              <i class="fas fa-times"></i> Cancel
-            </button>
-          </div>
-        </div>
-      </div>
 
-      <div class="d-block d-md-none">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-plus"></i> Add User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addUser()">
+          <div class="mb-3">
+            <label for="usernameInput" class="form-label">Username</label>
+            <input id="usernameInput" class="form-control form-control-sm" [(ngModel)]="newUser.username" name="username" placeholder="Username" required />
+          </div>
+          <div class="mb-3">
+            <label for="emailInput" class="form-label">Email</label>
+            <input id="emailInput" class="form-control form-control-sm" [(ngModel)]="newUser.email" name="email" placeholder="Email" required />
+          </div>
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" id="passwordInput" class="form-control form-control-sm" [(ngModel)]="newUser.password" name="password" placeholder="Password" required />
+          </div>
+          <div class="mb-3">
+            <label for="roleInput" class="form-label">Role</label>
+            <select id="roleInput" class="form-control form-control-sm" [(ngModel)]="newUser.role" name="role" required>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="userForm"  (click)="addUser()"><i class="fas fa-plus"></i> Add User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fuid p-4">
+  <div class="card shadow-lg">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="mb-0 text-dark font-weight-bold">User <b>Management</b></h2>
+      <button type="button" class="btn btn-primary add-btn " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i> Add User</button>
+    </div>
+
+    <div class="table-container px-3">
+
+      <div class="d-block d-md-none mobile">
         <div *ngFor="let user of users" class="card mb-3">
-          <div class="card-body">
+          <div class="card-body ">
             <div *ngIf="!user.isEditing">
-              <h5 class="card-title text-dark font-weight-bold">{{ user.username }}</h5>
-              <p class="card-text text-muted mb-1"><strong>Email:</strong> {{ user.email }}</p>
-              <p class="card-text text-muted mb-1"><strong>Password:</strong> {{ user.password }}</p>
+              <h5 class="card-title text-dark font-weight-bold">
+                {{ user.username }}
+              </h5>
+              <p class="card-text text-muted mb-1">
+                <b>Email:</b> {{ user.email }}
+              </p>
+              <p class="card-text text-muted mb-1">
+                <b>Password:</b> {{ user.password }}
+              </p>
+              <p class="card-text text-muted mb-1">
+                <b>role:</b> {{ user.role }}
+              </p>
               <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-sm btn-outline-info" (click)="editUser(user)">
+                <button
+                  class="btn btn-sm btn-outline-info"
+                  (click)="editUser(user)"
+                >
                   <i class="fas fa-edit"></i> Edit
                 </button>
-                <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user.id)">
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="deleteUser(user.id)"
+                >
                   <i class="fas fa-trash"></i> Delete
                 </button>
               </div>
             </div>
-            <div *ngIf="user.isEditing">
+
+            <div *ngIf="user.isEditing" class="mob-edit">
               <div class="row g-3">
                 <div class="col-md-6">
-                  <input class="form-control form-control-sm" [(ngModel)]="user.username" placeholder="Username" />
+                  <input
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.username"
+                    placeholder="Username"
+                  />
                 </div>
                 <div class="col-md-6">
-                  <input class="form-control form-control-sm" [(ngModel)]="user.email" placeholder="Email" />
+                  <input
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.email"
+                    placeholder="Email"
+                  />
                 </div>
                 <div class="col-md-6">
-                  <input type="password" class="form-control form-control-sm" [(ngModel)]="user.password" placeholder="Password" />
+                  <input
+                    type="password"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.role"
+                    placeholder="role"
+                  />
                 </div>
                 <div class="col-12 text-center mt-3">
-                  <button class="btn btn-success btn-sm me-2" (click)="saveEdit(user)">
+                  <button
+                    class="btn btn-success btn-sm me-2"
+                    (click)="saveEdit(user)"
+                  >
                     <i class="fas fa-save"></i> Save
                   </button>
-                  <button class="btn btn-secondary btn-sm" (click)="cancelEdit(user)">
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    (click)="cancelEdit(user)"
+                  >
                     <i class="fas fa-times"></i> Cancel
                   </button>
                 </div>
@@ -74,13 +133,14 @@
       </div>
 
       <div class="d-none d-md-block">
-        <div class="table-responsive">
-          <table class="table table-hover">
+        <div class="fs-5-xl ">
+          <table class="table table-hover ">
             <thead class="bg-light">
-              <tr>
+              <tr class="">
                 <th class="text-dark font-weight-bold">Username</th>
                 <th class="text-dark font-weight-bold">Email</th>
                 <th class="text-dark font-weight-bold">Password</th>
+                <th class="text-dark font-weight-bold">role</th>
                 <th class="text-dark font-weight-bold">Actions</th>
               </tr>
             </thead>
@@ -88,16 +148,38 @@
               <tr *ngFor="let user of users">
                 <td>
                   <div *ngIf="!user.isEditing">{{ user.username }}</div>
-                  <input *ngIf="user.isEditing" class="form-control form-control-sm" [(ngModel)]="user.username" />
+                  <input
+                    *ngIf="user.isEditing"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.username"
+                  />
                 </td>
                 <td>
                   <div *ngIf="!user.isEditing">{{ user.email }}</div>
-                  <input *ngIf="user.isEditing" class="form-control form-control-sm" [(ngModel)]="user.email" />
+                  <input
+                    *ngIf="user.isEditing"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.email"
+                  />
                 </td>
                 <td>
                   <div *ngIf="!user.isEditing">{{ user.password }}</div>
-                  <input *ngIf="user.isEditing" type="password" class="form-control form-control-sm" [(ngModel)]="user.password" />
+                  <input
+                    *ngIf="user.isEditing"
+                    type="password"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.password"
+                  />
                 </td>
+                <td>
+                  <div *ngIf="!user.isEditing">{{ user.role }}</div>
+                  <input
+                    *ngIf="user.isEditing"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="user.role"
+                  />
+                </td>
+
                 <td>
                   <div class="d-flex gap-2">
                     <button *ngIf="!user.isEditing" class="btn btn-sm btn-outline-info" (click)="editUser(user)">
@@ -114,6 +196,7 @@
                     </button>
                   </div>
                 </td>
+
               </tr>
             </tbody>
           </table>
@@ -123,10 +206,8 @@
   </div>
 </div>
 
-
-
 <div class="text-center mt-4">
-  <button class="btn btn-danger btn-sm" (click)="logoutUser()">
+  <button class="btn btn-danger fs-5 p-2" (click)="logoutUser()">
     <i class="fas fa-sign-out-alt"></i> Logout
   </button>
 </div>

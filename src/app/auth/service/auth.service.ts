@@ -32,7 +32,6 @@ export class AuthService {
     return throwError('Something went wrong. Please try again later.'); 
   }
 
-  // ثبت‌نام کاربر
   registerUser(authData: AuthData): Observable<any> {
     console.log('Registering user:', authData);
 
