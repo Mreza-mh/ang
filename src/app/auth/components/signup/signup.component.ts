@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthData } from '../../model/auth.model';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -12,7 +13,8 @@ export class SignupComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class SignupComponent {
           this.signupForm.value.lastName,
         password: this.signupForm.value.password,
         email: this.signupForm.value.email,
-        role: 'user', 
+        role: 'user',
       };
 
       try {
@@ -59,5 +61,9 @@ export class SignupComponent {
     } else {
       console.log('Form is not valid');
     }
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/auth/login']);
   }
 }

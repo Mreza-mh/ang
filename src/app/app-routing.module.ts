@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from './guards/role.guard';
 import { UserhomepageComponent } from './pages/home/userhomepage/userhomepage.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 const routes: Routes = [
   {
@@ -21,10 +22,11 @@ const routes: Routes = [
     path: 'home',
     component: UserhomepageComponent,
     canActivate: [RoleGuard],
-    data: { role: 'user' }, 
+    data: { role: 'user' },
   },
 
-  { path: '**', redirectTo: '/' },
+  { path: '', component: LandingComponent },
+
 ];
 
 @NgModule({

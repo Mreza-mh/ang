@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { AuthData } from '../../model/auth.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   authData: AuthData = { email: ' ', password: '' };
   password: string = '';
 
-  constructor(private authservice: AuthService) {}
+  constructor(private authservice: AuthService , private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -45,5 +46,10 @@ export class LoginComponent implements OnInit {
       console.log('Form is not valid');
     }
   }
+
+  navigateToSignUp(): void {
+    this.router.navigate(['/auth/signup']);
+  }
+
 }
 

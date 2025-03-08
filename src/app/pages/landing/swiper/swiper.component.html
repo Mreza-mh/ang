@@ -1,0 +1,26 @@
+<swiper-container loop="true" #swiper>
+  <swiper-slide>
+    <div class="flex justify-center items-center h-screen">
+      <div class="p-6 text-center">
+        <img src="../../../../assets/images/loginbg.jpg" alt="Login Image">
+        <h2>Login</h2>
+        <p>Already have an account? Log in now.</p>
+        <button (click)="navigateToLogin()" class=" fs-4 text-white">Go to Login</button>
+      </div>
+    </div>
+  </swiper-slide>
+
+  <swiper-slide>
+    <div class="flex justify-center items-center h-screen">
+      <div class="p-6 text-center">
+        <img src="../../../../assets/images/loginbg.jpg" alt="Sign Up Image">
+        <h2>Sign Up</h2>
+        <p>Create an account to get started.</p>
+        <button (click)="navigateToSignUp()" class=" fs-4 text-white">Go to Sign Up</button>
+      </div>
+    </div>
+  </swiper-slide>
+
+  <div class="swiper-button-prev custom-prev"></div>
+  <div class="swiper-button-next custom-next"></div>
+</swiper-container>
