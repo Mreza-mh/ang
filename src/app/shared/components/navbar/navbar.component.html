@@ -1,70 +1,44 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a href="#" class="navbar-brand ">
-    <img src="../../../../assets/icons/icon.png" style="width: 50px;" alt="logo" class="img-fluid" />
+<nav
+  [class.disabled]="isMenuOpen"
+  [class.shrink]="isScrolled"
+  class="navbar navbar-expand-lg navbar-light fixed-top ms-auto navv"
+>
+  <a href="#" class="navbar-brand">
+    <img src="../../../../assets/icons/icon.png" alt="logo" class="img-fluid" />
   </a>
 
-  <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarmenu" aria-controls="navbarmenu" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    (click)="toggleMenu()"
+    class="navbar-toggler ms-auto"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarmenu"
+    aria-controls="navbarmenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarmenu">
+  <div
+    class="collapse navbar-collapse"
+    [class.disabled]="isMenuOpen"
+    id="navbarmenu"
+  >
     <ul class="navbar-nav ms-auto mx-2">
-      <li class="nav-item dropdown ms-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="12px" width="12px" viewBox="0 0 490.4 490.4">
-            <path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796zM41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"/>
-          </svg>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink" style="width: 280px;">
-          <form action="" class="form-inline m-2">
-            <div class="input-group">
-              <input type="text" class="form-control rounded-0 bg-light" placeholder="جستجو" />
-              <div class="input-group-append">
-                <button class="btn btn-dark rounded-0" type="submit">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="12px" width="12px" viewBox="0 5 490.4 490.4">
-                    <path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796zM41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">EN</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">درباره ما</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">البسه سازمانی</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">بلاگ</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">فروشگاه ها</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">خدمات</a>
-      </li>
-      <li class="nav-item ms-auto">
-        <a href="#" class="nav-link">فروش ویژه</a>
-      </li>
-
-      <li class="nav-item dropdown ms-auto">
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-          <li><a href="#" class="dropdown-item">aaaaa</a></li>
-          <li><a href="#" class="dropdown-item">bbbb</a></li>
-          <li><a href="#" class="dropdown-item">cccc</a></li>
-          <li><a href="#" class="dropdown-item">ddddd</a></li>
-        </ul>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          محصولات
-        </a>
+      <li class="nav-item ms-auto" *ngFor="let item of menuItems">
+        <a (click)="navigateTo(item.link)" class="nav-link">{{ item.label }}</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<div *ngIf="isLoaded">
+  <div class="menu-sidebar" [ngClass]="{ 'menu-open': isMenuOpen }">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item ms-auto" *ngFor="let item of menuItems">
+        <a (click)="navigateTo(item.link)" class="nav-link">{{ item.label }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

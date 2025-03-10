@@ -13,7 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { LandingComponent } from './pages/landing/landing.component';
 import { SwiperComponent } from './pages/landing/swiper/swiper.component';
 import { register } from 'swiper/element/bundle';
-// register Swiper custom elements
+import { RouterModule } from '@angular/router';
+
 register();
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ register();
     //ماژولهای خارجی مورد نیاز
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [
     //سرویسهایی که در ماژول قابل استفاده هستند

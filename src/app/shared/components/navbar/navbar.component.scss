@@ -1,10 +1,22 @@
 .navbar {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.158);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.062);
   padding: 0.5rem 1rem;
+  backdrop-filter: blur(30px);
+  background: linear-gradient(to left, #bbbaba57, #000000);
+  height: 7%;
+  transition: height 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.shrink {
+  height: 6%; 
+  padding: 0.25rem 1rem; 
+    backdrop-filter: blur(10px);
+  background: linear-gradient(to left, #bbbaba57, #000000);
 }
 
 .navbar-brand img {
   max-height: 50px;
+  width: 50px;
 }
 
 .navbar-toggler {
@@ -18,47 +30,71 @@
 
 .nav-link {
   font-weight: 500;
-  color: #333 !important;
+  transition: color 0.3s ease;
+  font-size: large;
+  font-weight: 600;
+  margin-right:0.75rem;
+}
+
+.nav-link:hover{
+  color: #0066d3 !important;
   transition: color 0.3s ease;
 }
 
-.nav-link:hover {
-  color: #007bff !important;
+.menu-sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #cfcfcf;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding: 2rem;
+  z-index: 100;
+  
+  visibility: hidden;
+  opacity: 0;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
 }
 
-.navbar-nav {
-  gap: 1rem;
+.menu-open {
+  right: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
-.dropdown-menu {
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+
+
+
+@keyframes slideIn {
+  from {
+    right: -250px;
+  }
+  to {
+    right: 0;
+  }
 }
 
-.dropdown-item {
-  font-size: 14px;
+@keyframes slideOut {
+  from {
+    right: 0;
+  }
+  to {
+    right: -250px;
+  }
+
 }
 
 @media (max-width: 990px) {
-  .navbar-collapse {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
+  .navbar {
+    width: 100%;
   }
-
-  .navbar-nav {
-    gap: 0.5rem;
+  .collapse {
+    display: none;
   }
+}
 
-  .nav-item{
-    display: flex;
-    margin-right: 0;
-    .dropdown-menu{
-      margin-right: 10px;
-    }
-  }
-
+.disabled {
+  display: none;
 }

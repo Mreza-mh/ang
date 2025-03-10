@@ -11,6 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { PasswordInputComponent } from '../shared/components/password-input/password-input.component';
 
 import { CookieService } from 'ngx-cookie-service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [AuthService, CookieService],
 })

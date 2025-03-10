@@ -1,11 +1,151 @@
-<div class="w-100 position-relative">
-  <img
-    class="w-100 img-fluid bg-img"
-    src="../../../assets/images/wp7196384-purple-4k-wallpapers.jpg"
-    alt="Purple 4K Wallpaper"
-  />
-
-  <div class="position-absolute absolute-b">
-    <app-swiper></app-swiper>
+<header>
+  <app-navbar></app-navbar>
+  <div class="text-container">
+    <h1 class="display-2">Welcome ......</h1>
+    <p class="display-6">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </p>
   </div>
+</header>
+
+<section class="p-5 sec-color">
+  <div class="container-fluid">
+    <div class="text-center row justify-content-center mb-5">
+      <div class="col-xl-6 col-lg-8 col-md-10 mb-5">
+        <h1 class="display-2 uppercase">title</h1>
+        <div class="underline mb-5"></div>
+        <p class="text-center">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit porro
+          commodi quae doloribus neque asperiores? Eligendi repudiandae mollitia
+          suscipit, ut possimus quibusdam odit aspernatur minima aut, quia, nam
+          beatae! Eligendi!
+        </p>
+      </div>
+
+      <div class="row justify-content-evenly px-4">
+        <div class="col p-5">
+          <i class="fas fa-heart fa-5x my-3"></i>
+
+          <H2 class="mb-2">TITLE</H2>
+          <P>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non fugit
+            tempore nostrum optio sapiente ad, atque magnam, alias beatae
+            praesentium rerum facilis? Iure corpor
+          </P>
+        </div>
+        <div class="col p-5">
+          <i class="fas fa-ghost fa-5x my-3"></i>
+
+          <H2 class="mb-2">TITLE</H2>
+          <P>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non fugit
+            tempore nostrum optio sapiente ad, atque magnam, alias beatae
+            praesentium rerum facilis? Iure corpor
+          </P>
+        </div>
+        <div class="col p-5">
+          <i class="fas fa-chess fa-5x my-3"></i>
+          <H2 class="mb-2">TITLE</H2>
+          <P>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non fugit
+            tempore nostrum optio sapiente ad, atque magnam, alias beatae
+            praesentium rerum facilis? Iure corpor
+          </P>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-evenly align-items-center p-t">
+      <div
+        class="col-xl-4 col-lg-5 col-md-6"
+        [ngClass]="{ 'from-right': isScrolled }"
+      >
+        <h2 class="display-2">title</h2>
+        <p class="fs-5">
+          Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet consectetur,
+          adipisicing elit. Unde libero culpa perspiciatis doloribus eius
+          nesciunt porro soluta? Eos, ad? Atque dicta magni quod iure accusamus
+          aut obcaecati quas neque cumque. lorem Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Aperiam est quia molestiae assumenda
+          laudantium illo cum repellat, tempore vitae ratione, repudiandae at
+          aspernatur recusandae laborum sed temporibus pariatur corporis
+          voluptates? consectetur adipisicing elit. Aperiam, consectetur!
+        </p>
+      </div>
+
+      <div class="col-xl-4 col-lg-5 col-md-6 mb-4">
+        <app-swiper></app-swiper>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="underline"></div>
+
+<div class="container-fluid pleft footer p-t2">
+  <footer class="row row-to-col w-100 justify-content-center py-5">
+    <div class="col mb-3 text-center pr">
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
+      >
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+      <p class="">© 2024</p>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Features</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Pricing</a>
+        </li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">About</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Features</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Pricing</a>
+        </li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">About</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Features</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">Pricing</a>
+        </li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0">About</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
 </div>
