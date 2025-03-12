@@ -29,13 +29,12 @@ export class NavbarComponent implements OnInit {
   }
 
   menuItems = [
-    { label: 'EN', link: '/auth/login' },
-    { label: 'درباره ما', link: '/' },
-    { label: 'البسه سازمانی', link: '/organizational-clothing' },
-    { label: 'بلاگ', link: '/blog' },
-    { label: 'فروشگاه ها', link: '/stores' },
-    { label: 'خدمات', link: '/services' },
-    { label: 'فروش ویژه', link: '/special-sale' },
+    { label: 'login', link: '/auth/login' },
+    { label: 'signup', link: '/auth/signup' },
+    { label: ' landing page ', link: '/' },
+    { label: 'login', link: '/auth/login' },
+    { label: 'signup', link: '/auth/signup' },
+    { label: ' landing page ', link: '/' },
   ];
 
   @HostListener('window:scroll', [])

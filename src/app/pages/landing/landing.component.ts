@@ -4,7 +4,7 @@ import { Component, HostListener, ViewEncapsulation } from '@angular/core';
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class LandingComponent {
   isScrolled = false;

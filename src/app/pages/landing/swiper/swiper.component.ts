@@ -6,26 +6,25 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import Swiper from 'swiper'; // Import Swiper core
+import Swiper from 'swiper'; 
 import {
   Navigation,
   Pagination,
   Autoplay,
   Keyboard,
   Mousewheel,
-} from 'swiper/modules'; // Import Swiper modules
+} from 'swiper/modules'; 
 
 @Component({
   selector: 'app-swiper',
   templateUrl: './swiper.component.html',
   styleUrls: ['./swiper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush, // Optimize change detection
+  changeDetection: ChangeDetectionStrategy.OnPush, 
 })
 export class SwiperComponent implements AfterViewInit, OnDestroy {
   @ViewChild('swiper', { static: false }) swiperContainer!: ElementRef;
   swiper!: Swiper;
 
-  // Dynamic slide data (can be fetched from a service)
   slides = [
     { image: '../../../assets/images/seebandw.jpg', alt: 'Slide 1' },
     { image: '../../../assets/images/seebandw.jpg', alt: 'Slide 2' },
@@ -45,11 +44,10 @@ export class SwiperComponent implements AfterViewInit, OnDestroy {
   }
 
   private initializeSwiper(): void {
-    // Register Swiper modules
     Swiper.use([Navigation, Pagination, Autoplay, Keyboard, Mousewheel]);
 
     this.swiper = new Swiper(this.swiperContainer.nativeElement, {
-      loop: true,
+      // loop: true,
       autoplay: {
         delay: 3000,
         disableOnInteraction: false,
